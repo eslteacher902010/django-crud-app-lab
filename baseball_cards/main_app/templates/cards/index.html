@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{% static 'css/cards/card-index.css' %}"
+/>
+{% endblock %} {% block content %}
+
+<section class="page-header">
+  <h1>Card List</h1>
+  <img
+    src="{% static 'images/foreign-card.jpg' %}"
+    alt="A foreign card"
+  />
+  <img
+    src="{% static 'images/griffey.jpg' %}"
+    alt="A Ken Griffey Jr. card"
+  />
+  <img
+    src="{% static 'images/Topps-judge-curated.jpg' %}"
+    alt="A Topps Judge Curated card"
+  />
+  <img
+    src="{% static 'images/cubs.jpg' %}"
+    alt="A Chicago Cubs card"
+  />
+</section>
+
+<section class="card-container">
+  {% for card in cards %}
+  <div class="card">
+    <div class="card-content">
+      <div class="card-img-container">
+        <img
+          src="{% static 'images/' %}{{ card.image_filename }}" alt="{{ card.name }} card" />
+      </div>
+      <div class="card-content">
+        <h2 class="card-title">{{ card.name }}</h2>
+    {% if card.year > 0 %}
+      <p><strong>Year:</strong> {{ card.year }}</p>
+    {% endif %}
+
+    <p><strong>Brand:</strong> {{ card.brand }}</p>
+    <p><strong>Condition:</strong> {{ card.condition }}</p>
+    <p><strong>Price:</strong> ${{ card.price|floatformat:0 }}</p>
+
+    <p><small>{{ card.description }}</small></p>
+  </div>
+</div>
+
+  {% endfor %}
+</section>
+
+{% endblock %}

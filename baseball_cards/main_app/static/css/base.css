@@ -88,8 +88,8 @@ nav a:hover {
 /* ----- Header Logo ----- */
 .header-logo-container {
   margin: auto;
-  padding: 10px 20px 0;
-  max-width: 100px;
+  /* padding: 10px 20px 0; */
+  /* max-width: 100px; */
 }
 
 /* ----- Main Content ----- */

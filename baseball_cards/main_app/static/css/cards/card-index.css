@@ -1,42 +1,76 @@
+/* ---------- Layout ---------- */
 .card-container {
-  padding: 0 30px;
+  padding: 30px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 20px;
 }
 
+/* ---------- Card ---------- */
 .card {
-  width: 275px;
-  margin: 10px;
-  border: var(--borders);
-  box-shadow: var(--card-box-shadow);
+  width: 260px;
+  border: 1px solid #e5e7eb; /* subtle border */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card-content {
-  padding: 10px;
-  width: 100%;
+/* Hover effect */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-.usr-img {
-  width: 100%;
-  border-radius: var(--card-border-radius);
-}
-
+/* ---------- Card Links ---------- */
 .card > a {
   text-decoration: none;
-  color: var(--text-color);
+  color: inherit;
+  display: block;
+  height: 100%;
 }
 
-.card h2 {
-  margin: 10px 0;
-  font-size: var(--font-xl);
+/* ---------- Image ---------- */
+.card-img-container img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #e5e7eb;
+  border-radius: 10px 10px 0 0;
 }
 
-.card p {
-  margin: 5px 0;
-  font-size: var(--font-reg);
+/* ---------- Content ---------- */
+.card-content {
+  padding: 15px;
 }
 
-.header-logo-container {
-  display: none;
+.card-content h2 {
+  margin: 8px 0;
+  font-size: 1.25rem;
+  color: #1f2937; /* dark gray */
+}
+
+.card-content p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #4b5563; /* neutral gray */
+}
+
+/* ---------- Price ---------- */
+.card-content p strong {
+  color: #111827;
+}
+
+/* ---------- Responsive ---------- */
+@media (min-width: 768px) {
+  .card {
+    width: 300px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-container {
+    gap: 30px;
+  }
 }

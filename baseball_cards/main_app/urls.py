@@ -1,15 +1,14 @@
 from django.urls import path
-from . import views # Import views to connect routes to view functions
+from . import views
 
 urlpatterns = [
-  path('', views.home, name='home'),
-  path('about/', views.about, name='about'),
-  #adding new route for card index
-  path('cards/', views.card_index, name='card-index'),
+    path('', views.home, name='home'),
+    path('about/', views.about, name='about'),
+    path('cards/', views.card_index, name='card-index'),
+    path('cards/<int:card_id>/', views.card_detail, name='card-detail'),
+    path('cards/create/', views.CardCreate.as_view(), name='card-create'),
+    path('cards/<int:pk>/update/', views.CardUpdate.as_view(), name='card-update'),
+    path('cards/<int:pk>/delete/', views.CardDelete.as_view(), name='card-delete'),
+
 ]
-
-
-# main_app/urls.py
-# This file defines URL patterns for the main_app application
-# It connects URL paths to their corresponding view functions in views.py
-#the url in catcollector/urls.py will point to this file for more routes
+ 

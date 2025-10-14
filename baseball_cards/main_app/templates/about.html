@@ -1,9 +1,10 @@
-{% extends 'base.html' %} 
-{% block content %}
-<h1>About the Baseball Cards Collector</h1>
-<hr />
-<p class="page-content">
-  Baseball Cards--Welcome to the Baseball Cards Collector! 
-</p>
-{% endblock %}
+{% extends 'base.html' %}
+{% load static %}
 
+{% block content %}
+<section class="about">
+  <h1>About</h1>
+  <p>This app lets you collect, view, and manage classic baseball cards — built with Django!</p>
+  <img src="{% static 'images/griffey.jpg' %}" alt="Ken Griffey Jr. card" height="250px"/>
+</section>
+{% endblock %}

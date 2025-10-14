@@ -1,42 +1,32 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" type="image/png" href="" />
+    <title>Baseball Cards</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    <link
-        rel="shortcut icon"
-        type="image/png"
-        href="{% static 'images/jackieR.jpg' %}"
-        />
-        <img src="{% static 'images/jim_thome.jpg' %}" height="200px" width="400px" alt="The Baseball Cards Collector Logo" />
-
-
-    <title>Baseball Cards Collector</title>
-    {% block head %} 
-    {% endblock %}
+    {% block head %}{% endblock %}
   </head>
   <body>
     <header>
-            <div class="header-logo-container" style="width: 400px; height: 100px;">
-        <a href="{% url 'home' %}">
-            <img src="{% static 'images/roberto_clemente.jpg' %}" height="100px" alt="The Baseball Cards Collector Logo" />
-        </a>
-        </div>
+      <h1><a href="{% url 'home' %}">Baseball Card Collector</a></h1>
       <nav>
         <ul>
-          <li><a href="/cards">All Cards</a></li>
-          <li><a href="/about">About</a></li>
+          <li><a href="{% url 'card-index' %}">All Cards</a></li>
+          <li><a href="{% url 'card-create' %}">Add Card</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
         </ul>
       </nav>
     </header>
+
     <main>
-     {% block content %} 
-     {% endblock %}
-     </main>
+      {% block content %}
+      {% endblock %}
+    </main>
+
+    <footer>
+      <p>&copy; 2029 Baseball Cards App</p>
+    </footer>
   </body>
 </html>

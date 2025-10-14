@@ -1,31 +1,34 @@
-
-/* ----- Reset and Base Settings ----- */
+/* ---------- Global Box Sizing ---------- */
 html {
   box-sizing: border-box;
 }
 
-/* Universal Selector: apply box-sizing inheritance to all elements */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
-/* Root font size (10px equivalent if browser default = 16px) */
+/* ---------- Root Variables ---------- */
 :root {
-  font-size: 62.5%;
+  font-size: 62.5%; /* 10px base */
 }
 
-/* ----- Body Layout ----- */
+/* ---------- Body ---------- */
 body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  /* removed align-items:center to prevent centering all content */
+  align-items: center;
+  min-height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
     'Helvetica Neue', sans-serif;
-  min-height: 100vh;
 
-  /* CSS Variables */
+  /* light blue background gradient */
+  background: linear-gradient(180deg, #e7f5ff 0%, #f9fcff 100%);
+
+  /* Color Variables */
   --nav-bg: rgba(104, 197, 248, 0.7);
   --nav-bg-ff: rgba(104, 197, 248, 0.9);
   --borders: rgb(36, 116, 248) solid 2px;
@@ -46,11 +49,12 @@ body {
   --card-border-radius: 6px;
 }
 
-/* ----- Header & Navigation ----- */
+/* ---------- Header & Nav ---------- */
 header {
   width: 100%;
   background: var(--nav-bg-ff);
   border-bottom: var(--borders);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
 }
 
 nav {
@@ -78,33 +82,26 @@ nav a {
   text-decoration: none;
   color: var(--text-color);
   font-weight: 600;
-  font-size: 1.6rem;
+  font-size: 16px;
+  transition: color 0.2s ease;
 }
 
 nav a:hover {
   color: var(--link-hover-color);
 }
 
-/* ----- Header Logo ----- */
-.header-logo-container {
-  margin: auto;
-  /* padding: 10px 20px 0; */
-  /* max-width: 100px; */
-}
-
-/* ----- Main Content ----- */
+/* ---------- Main ---------- */
 main {
   width: 100%;
-  padding: 20px 10px;
-  margin: 0 auto;
-  max-width: 1300px;
+  padding: 0 10px;
 }
 
+/* ---------- Headings ---------- */
 h2 {
   font-size: var(--font-xl);
 }
 
-/* ----- Buttons ----- */
+/* ---------- Buttons ---------- */
 .btn {
   font-size: var(--font-l);
   padding: 8px 16px;
@@ -117,18 +114,34 @@ h2 {
   cursor: pointer;
   font-family: inherit;
   margin-right: 10px;
+  transition: background-color 0.2s ease;
 }
 
 .btn:hover {
   background-color: var(--button-bg-hover);
 }
 
-.submit { color: var(--submit); border-color: var(--submit); }
-.secondary { color: var(--secondary); border-color: var(--secondary); }
-.warn { color: var(--warn); border-color: var(--warn); }
-.danger { color: var(--danger); border-color: var(--danger); }
+.submit {
+  color: var(--submit);
+  border-color: var(--submit);
+}
 
-/* ----- Page Header (Generic) ----- */
+.secondary {
+  color: var(--secondary);
+  border-color: var(--secondary);
+}
+
+.warn {
+  color: var(--warn);
+  border-color: var(--warn);
+}
+
+.danger {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+/* ---------- Page Header ---------- */
 .page-header {
   display: flex;
   align-items: center;
@@ -149,38 +162,7 @@ h2 {
   margin-left: 20px;
 }
 
-/* ----- Page Content ----- */
-.page-content {
-  font-size: var(--font-reg);
-}
-
-/* ===============================
-   Cards Page Adjustments
-   =============================== */
-.page-header.cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 12px;
-  margin: 30px auto;
-}
-
-.page-header.cards img {
-  height: 140px;
-  width: auto;
-  border-radius: 8px;
-  box-shadow: var(--card-box-shadow);
-  transition: transform 0.2s ease;
-}
-
-.page-header.cards img:hover {
-  transform: scale(1.05);
-}
-
-/* ===============================
-   Responsive Layouts
-   =============================== */
+/* ---------- Responsive Layouts ---------- */
 @media only screen and (min-width: 768px) {
   header {
     position: sticky;
@@ -188,6 +170,11 @@ h2 {
     flex-direction: row;
     top: 0;
     align-items: center;
+  }
+
+  main {
+    max-width: 1300px;
+    min-height: calc(100vh - 53px);
   }
 
   nav,
@@ -198,7 +185,6 @@ h2 {
 
   .header-logo-container {
     padding-top: 3px;
-    width: 213px;
   }
 
   nav {
@@ -207,17 +193,8 @@ h2 {
     justify-content: center;
   }
 
-  nav ul { flex-wrap: nowrap; }
-
-  .page-header h1 { font-size: var(--font-xtreme); }
-
-  .page-header img {
-    height: 50px;
-    margin-left: 20px;
-  }
-
-  .page-header img:first-of-type {
-    margin-left: 25px;
+  nav ul {
+    flex-wrap: nowrap;
   }
 
   @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
@@ -230,6 +207,10 @@ h2 {
 }
 
 @media only screen and (min-width: 1024px) {
+  main {
+    min-height: calc(100vh - 55px);
+  }
+
   header {
     margin: 20px 20px 0 20px;
     width: calc(100vw - 40px);
@@ -247,17 +228,7 @@ h2 {
     border-radius: 18px;
   }
 
-  nav { margin-left: auto; }
-
-  .header-logo-container {
-    padding-top: 6px;
-    width: 256px;
-    height: 35px;
-  }
-
   @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-    header { -webkit-backdrop-filter: none; backdrop-filter: none; }
-
     nav,
     .header-logo-container {
       background: rgba(104, 197, 248, 0.6);

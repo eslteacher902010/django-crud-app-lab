@@ -1,0 +1,112 @@
+/* ---------- Layout ---------- */
+.card-container {
+  padding: 35px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Image ---------- */
+.card-img img {
+  width: 75%;
+  max-width: 350px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------- Details ---------- */
+.card-details {
+  text-align: center;
+  width: 95%;
+  max-width: 500px;
+  margin-top: 20px;
+}
+
+.card-details h1 {
+  font-size: var(--font-xxl, 2rem);
+  margin: 10px 0 5px;
+}
+
+.card-details h2 {
+  font-size: var(--font-xl, 1.4rem);
+  margin: 5px 0 15px;
+  color: #444;
+}
+
+.card-details p {
+  font-size: var(--font-reg, 1rem);
+  margin: 6px 0;
+}
+
+/* ---------- Actions ---------- */
+.card-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+
+.btn.warn {
+  background-color: #f59e0b; /* amber */
+}
+
+.btn.warn:hover {
+  background-color: #d97706;
+}
+
+.btn.danger {
+  background-color: #ef4444; /* red */
+}
+
+.btn.danger:hover {
+  background-color: #b91c1c;
+}
+
+.btn.secondary {
+  background-color: #6b7280; /* gray */
+}
+
+.btn.secondary:hover {
+  background-color: #4b5563;
+}
+
+.back-link {
+  display: block;
+  margin-top: 25px;
+  text-decoration: none;
+  color: #2563eb;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Responsive ---------- */
+@media (min-width: 768px) {
+  .card-container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  .card-img img {
+    width: 300px;
+  }
+
+  .card-details {
+    text-align: left;
+    margin-top: 0;
+  }
+}

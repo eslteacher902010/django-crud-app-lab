@@ -1,5 +1,4 @@
-/* Scope everything under .login-page to avoid global overrides */
-.login-page main {
+main {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7,7 +6,7 @@
   height: 100%;
 }
 
-.login-page main > section {
+main > section {
   width: 100%;
   padding: 10px 8px;
   display: flex;
@@ -16,22 +15,27 @@
   flex-direction: column;
 }
 
-/* Hide logo header inherited from base.css */
-.login-page .header-logo-container {
+.header-logo-container {
   display: none;
 }
 
-/* Logo container for large logo images */
-.login-page .logo-container {
-  max-width: 375px;
+.logo-container {
+  display: flex;
+  justify-content: center; /* horizontally center */
+  align-items: center;     /* vertically center (if the section has height) */
+  text-align: center;
+  margin-top: 20px;
 }
 
-/* Main content area for form or intro */
-.login-page .cat-container {
-  width: 80%;
+.logo-container img {
+  max-width: 80%;
+  height: auto;
+  border-radius: 10px; /* optional – gives a smooth edge */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* optional */
 }
 
-/* ----- Login Form Layout ----- */
+
+
 .login {
   display: flex;
   flex-direction: column;
@@ -49,7 +53,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 14px 0 0;
+  margin: 14px 0 0px;
 }
 
 .login label {
@@ -68,13 +72,12 @@
   margin-top: 16px;
 }
 
-/* ----- Responsive Layouts ----- */
 @media only screen and (min-width: 768px) {
-  .login-page main {
+  main {
     justify-content: space-around;
   }
 
-  .login-page main > section {
+  main > section {
     width: 40%;
   }
 
@@ -86,7 +89,7 @@
     width: 100%;
   }
 
-  .login-page .logo-container {
+  .logo-container {
     max-width: 520px;
   }
 }

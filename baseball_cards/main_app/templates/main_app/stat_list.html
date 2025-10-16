@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/stats.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="stat-list-container">
+  <h1 class="stat-list-title">All Player Stats</h1>
+
+  {% for stat in object_list %}
+    <div class="stat-item">
+      <div class="stat-name">{{ stat.card.name }}</div>
+      <div class="stat-type">{{ stat.get_stat_display }}</div>
+      <div class="stat-date">{{ stat.date }}</div>
+    </div>
+  {% empty %}
+    <p class="no-stats">No stats found.</p>
+  {% endfor %}
+</div>
+{% endblock %}

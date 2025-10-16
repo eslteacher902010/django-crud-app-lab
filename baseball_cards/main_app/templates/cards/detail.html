@@ -22,5 +22,70 @@
     <a href="{% url 'card-update' card.id %}" class="btn warn">Edit</a>
     <a href="{% url 'card-delete' card.id %}" class="btn danger">Delete</a>
   </div>
+<!-- all stats -->
+  <div class="stats-container">
+  <section class="stats">
+    <div class="subsection-title">
+      <h2>Stats</h2>
+      <img
+        src="{% static 'images/bowmanChrome.jpg' %}"
+        alt="A log of baseball"
+      />
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Statistic</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for stat in card.stat_set.all %}
+          <tr>
+            <td>{{ stat.date }}</td>
+            <td>{{ stat.get_stat_display }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</div>
+<h3>Add a Stat</h3>
+<form
+  action="{% url 'add-stat' card.id %}"
+  method="post"
+  class="subsection-content"
+  autocomplete="off"
+>
+  {% csrf_token %} 
+  {{ stat_form.as_p }}
+  <button type="submit" class="btn submit">Add Stat</button>
+</form>
+
+<h3>Past Stats</h3>
+{% if card.stat_set.all.count %}
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Statistic</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for stat in card.stat_set.all %}
+      <tr>
+        <td>{{stat.date}}</td>
+        <td>{{stat.get_stat_display}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <div class="subsection-content">
+    <p>⚠️ {{card.name}} has not had any stats. Add one now!</p>
+  </div>
+{% endif %}
+
+
 </section>
 {% endblock %}

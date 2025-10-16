@@ -1,0 +1,28 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/sales/sale-index.css' %}" />
+{% endblock %} 
+{% block content %}
+
+<section class="page-header">
+  <h1>All Sales</h1>
+  <img src="{% static 'images/string.svg' %}" alt="A ball of string" />
+  <img src="{% static 'images/mouse.svg' %}" alt="A mouse" />
+</section>
+
+<section class="card-container">
+  {% for sale in sale_list %}
+    <div class="card" style="border-color: {{ sale.color }}">
+      <div class="card-bg" style="background-color: {{ sale.color }}"></div>
+      <a href="{% url 'sale-detail' sale.id %}">
+        <div class="card-content">
+          <h2>{{ sale.name }}</h2>
+          <p>A {{ sale.color }} sale</p>
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+</section>
+
+{% endblock %}

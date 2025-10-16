@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/sales/sale-detail.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="card
+  {% if sale.amount > 200 %}
+    pink-sale
+  {% elif sale.amount > 100 %}
+    yellow-sale
+  {% else %}
+    green-sale
+  {% endif %}
+">
+  <div class="card-bg"></div>
+  <div class="card-content">
+    <h2>{{ sale.card.name }}</h2>
+    <p><strong>Amount:</strong> ${{ sale.amount }}</p>
+    <p><strong>Date:</strong> {{ sale.date }}</p>
+  </div>
+</div>
+
+<a href="{% url 'sale-update' sale.id %}" class="btn warn">Edit</a>
+<a href="{% url 'sale-delete' sale.id %}" class="btn danger">Delete</a>
+<a href="{% url 'sale-index' %}" class="btn">Back to Sales</a>
+{% endblock %}

@@ -1,0 +1,28 @@
+/* Example custom admin colors */
+body {
+  background: linear-gradient(180deg, #e0f2fe 0%, #f0f9ff 100%);
+}
+
+#header {
+  background-color: #2563eb;  /* blue header */
+  color: white;
+}
+
+#header a:link, #header a:visited {
+  color: #fff;
+}
+
+.module h2 {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+.button, input[type=submit] {
+  background-color: #2563eb;
+  color: white;
+  border-radius: 6px;
+}
+
+.button:hover {
+  background-color: #1d4ed8;
+}

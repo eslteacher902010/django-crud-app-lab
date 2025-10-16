@@ -123,6 +123,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'cat-index'
+LOGIN_URL = 'home'
+
+
+LOGIN_REDIRECT_URL = 'card-index'
 
 LOGOUT_REDIRECT_URL = 'home'

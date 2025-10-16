@@ -1,16 +1,27 @@
+from decimal import Decimal
 from django.shortcuts import redirect, render, get_object_or_404
 #the view in django is the controller in MVC
 # Create your views here.
+from datetime import date
+
 
 from .models import Card, Stat, Sale
 
 from django.views.generic.edit import CreateView
-from .forms import StatForm
+from .forms import StatForm, SaleForm
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import ListView, DetailView #import generic class-based views
+from django.views.generic import ListView, DetailView #generic class views
 
 from django.contrib.auth.views import LoginView
+
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+
+# Import the login_required decorator
+from django.contrib.auth.decorators import login_required
+
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class Home(LoginView):
@@ -20,22 +31,24 @@ class Home(LoginView):
 def about(request):
     return render(request, 'about.html')
 
+@login_required
 def card_index(request):
-    cards = Card.objects.all()
+    cards = request.user.card_set.all()
     return render(request, 'cards/index.html', {'cards': cards})
 
 def card_detail(request, card_id):
     card = Card.objects.get(id=card_id)
     stat_form = StatForm()
+    sale_form = SaleForm()
     return render(request, 'cards/detail.html', {'card': card, 'stat_form': stat_form})
 
-class CardCreate(CreateView):
+class CardCreate(LoginRequiredMixin,CreateView):
     model = Card
     fields = '__all__'
 
     def form_valid(self, form):
         # Assign the logged in user (self.request.user)
-        form.instance.user = self.request.user  # form.instance is the cat
+        form.instance.user = self.request.user  # form.instance is the card
         # Let the CreateView do its job as usual 
         return super().form_valid(form) #esssentialy slows down the process to assign user
 
@@ -102,3 +115,40 @@ class SaleUpdate(UpdateView):
 class SaleDelete(DeleteView):
     model = Sale
     success_url = '/sales/'
+
+def signup(request):
+    error_message = ''
+    if request.method == 'POST':
+        # This is how to create a 'user' form object
+        # that includes the data from the browser
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            # This will add the user to the database
+            user = form.save()
+            # This is how we log a user in
+            login(request, user)
+            return redirect('card-index')
+        else:
+            error_message = 'Invalid sign up - try again'
+    # A bad POST or a GET request, so render signup.html with an empty form
+    form = UserCreationForm()
+    context = {'form': form, 'error_message': error_message}
+    return render(request, 'signup.html', context)
+    # Same as: 
+    # return render(
+    #     request, 
+    #     'signup.html',
+    #     {'form': form, 'error_message': error_message}
+    # )
+
+def add_sale(request, card_id):
+    card = get_object_or_404(Card, id=card_id)
+
+    # Example default: today’s date and a placeholder amount
+    Sale.objects.create(
+        card=card,
+        date=date.today(),
+        amount=Decimal("20.00")  # You can later replace with form data
+    )
+
+    return redirect('card-detail', card_id=card_id)

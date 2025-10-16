@@ -2,12 +2,26 @@
 {% load static %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/cards/card-detail.css' %}" />
+<!-- New MCDatepicker CSS -->
+<link 
+  href="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.css" 
+  rel="stylesheet" 
+/>
+<link rel="stylesheet" href="{% static 'css/mcdp.css' %}">
+<!-- MCDatepicker JS -->
+<script 
+  src="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.js"
+>
+</script>
+<!-- Existing CSS -->
+<link rel="stylesheet" href="{% static 'css/cards/card-detail.css' %}" />
+
 {% endblock %}
 {% block content %}
 <section class="card-container">
   <div class="card-img">
-    <img src="{% static 'images/' %}{{ card.image_filename }}" alt="{{ card.name }} card" />
-  </div>
+    <img src="{{ card.get_image_url }}" alt="{{ card.name }} card" />
+  </div> <!-- allow urls -->
   <div class="card-details">
     <h1>{{ card.name }}</h1>
     <h2>{{ card.brand }} — {{ card.year }}</h2>
@@ -86,6 +100,25 @@
   </div>
 {% endif %}
 
+
+<form
+  action="{% url 'add-sale' card.id %}"
+  method="post"
+  class="subsection-content"
+>
+  {% if card.sold_today_or_not %}
+  <p class="sold">{{card.name}} was sold today!</p>
+  {% else %}
+  <p class="unsold">{{card.name}} is still available!!</p>
+  {% endif %} 
+  {% csrf_token %}
+  {{ sale_form.as_p }}
+  <button type="submit" class="btn submit">Add a Sale</button>
+</form>
+
+
+
+<script defer src="{% static 'js/card-detail.js' %}"></script>
 
 </section>
 {% endblock %}

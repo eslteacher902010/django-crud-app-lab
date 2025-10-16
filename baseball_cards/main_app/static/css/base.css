@@ -109,7 +109,7 @@ h2 {
   border-width: 2px;
   border-style: solid;
   text-decoration: none;
-  background-color: var(--button-bg);
+  background-color: var(--primary);
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
@@ -252,4 +252,16 @@ h2 {
 
 #logout-form button:hover {
   color: var(--link-hover-color);
+}
+/* lazy me */
+
+.btn.submit {
+  background-color: #2563eb; /* Tailwind blue-600 */
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.btn.submit:hover {
+  background-color: #1d4ed8; /* slightly darker blue */
 }

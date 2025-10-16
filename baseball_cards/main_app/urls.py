@@ -19,10 +19,15 @@ urlpatterns = [
     path('cards/<int:card_id>/add-stat/', views.add_stat, name='add-stat'),
 
     path('sales/create/', views.SaleCreate.as_view(), name='sale-create'),
+    path('cards/<int:card_id>/add-sale/', views.add_sale, name='add-sale'), #add new sales 
+
     path('sales/<int:pk>/', views.SaleDetail.as_view(), name='sale-detail'),
     path('sales/', views.SaleList.as_view(), name='sale-index'),
     path('sales/<int:pk>/update/', views.SaleUpdate.as_view(), name='sale-update'),
     path('sales/<int:pk>/delete/', views.SaleDelete.as_view(), name='sale-delete'),
+
+    path('accounts/signup/', views.signup, name='signup'),
+
 
 
 

@@ -10,8 +10,8 @@
     <a href="{% url 'card-detail' card.id %}">
       <div class="card-content">
         <div class="card-img-container">
-          <img src="{% static 'images/' %}{{ card.image_filename }}" alt="{{ card.name }} card" />
-        </div>
+          <img src="{{ card.get_image_url }}" alt="{{ card.name }} card" />
+        </div> <!-- accept urls for images -->
         <h2>{{ card.name }}</h2>
         <p>{{ card.brand }} — {{ card.year }}</p>
         <p>${{ card.price|floatformat:0 }}</p>

@@ -1,10 +1,12 @@
 from django.db import models
+from django.templatetags.static import static
 
 # Create your models here.
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 
+from datetime import date  
 
 
 class Sale(models.Model):
@@ -43,6 +45,17 @@ class Card(models.Model):
 
     def get_absolute_url(self):
         return reverse('card-detail', kwargs={'card_id': self.id})
+    
+    def sold_today_or_not(self):
+        return self.sale_set.filter(date=date.today()).count() >= 1
+    
+    def get_image_url(self):
+        if not self.image_filename:
+            return "/static/images/default.jpg"
+        if self.image_filename.startswith('http'):
+            return self.image_filename
+        return f"/static/images/{self.image_filename}" #this helper method allows urls for images or static images
+
 
 class Stat(models.Model): # new model
     date = models.DateField('Stat updated on:')

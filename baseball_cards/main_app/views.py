@@ -44,7 +44,8 @@ def card_detail(request, card_id):
 
 class CardCreate(LoginRequiredMixin,CreateView):
     model = Card
-    fields = '__all__'
+    fields = ['name', 'brand', 'description', 'year', 'condition', 'price', 'image_filename']
+
 
     def form_valid(self, form):
         # Assign the logged in user (self.request.user)
